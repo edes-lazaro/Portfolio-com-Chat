@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Home</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style_chat.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+</head>
+<body>
+  <div id="escopo">
+        <heade >
+         <div id="menu">   
+                <i style='font-size:35px; color: rgb(255, 255, 255); float: left; padding-left: 2cm;' class='fas'>&#xf121;</i>
+                <a  href="index.html">Home</a> 
+                <a  href="#projetos"> Projetos</a>
+                <a  href="#sobre">Sobre</a>
+                <a id="circulo">
+                    <img src="img/retrato.jpeg" style="height: 120px; width: 110px;">
+                </a>
+              
+            
+          </div>
+        </heade>
+
+        <div id="intro">
+
+            <h1>"Inovação distingue um<br>líder de um seguidor."</h1>
+            <h1 style="padding-left: 90px;">  - Steve Jobs</h1>
+            
+          
+          </div>
+
+
+          <div class="box-div">
+
+                <button>Sobre</button>
+                  <div class="box">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis 
+                      ipsum eu urna dapibus cursus in maximus erat. Proin et aliquam odio. 
+                      Nulla tristique nec nisi ut semper. Mauris dapibus est tempor tellus pulvinar, at 
+                      interdum urna congue. In mattis eu diam eget elementum. Curabitur ullamcorper egestas orci, id porttitor orci posuere id. 
+                      Cras venenatis lacinia fringilla. Aliquam erat volutpat. Morbi vel convallis tellus, sit amet accumsan nunc. 
+                      Donec at augue aliquam, eleifend lacus non, dictum dolor. Aliquam iaculis sed orci sed dapibus. Donec facilisis porttitor suscipit.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis 
+                        ipsum eu urna dapibus cursus in maximus erat. Proin et aliquam odio. 
+                        Nulla tristique nec nisi ut semper. Mauris dapibus est tempor tellus pulvinar, at 
+                        interdum urna congue. In mattis eu diam eget elementum. Curabitur ullamcorper egestas orci, id porttitor orci posuere id. 
+                        Cras venenatis lacinia fringilla. Aliquam erat volutpat. Morbi vel convallis tellus, sit amet accumsan nunc. 
+                        Donec at augue aliquam, eleifend lacus non, dictum dolor. Aliquam iaculis sed orci sed dapibus. Donec facilisis porttitor suscipit.</p>
+                  </div>
+               
+          </div>
+
+          <div class="box-div">
+            <button>Projetos</button>
+            <div class="box">
+              
+            </div>
+          </div>
+
+
+          <div id="contato">
+            <button>Contato</button>  
+            <div id="redes_sociais">
+              <h5>Whatsapp:   <a style="color: rgb(72, 0, 187); " href="https://wa.me/73988626040">(73) 988626040</a></h5>
+            
+              <h5>Instagram:   <a style="color: rgb(72, 0, 187); " href="https://instagram.com/edes_lazaro?igshid=no3vut3zaymz">@edes_lazaro</a></h5>
+
+              <h5>Linkedin:   <a style="color: rgb(72, 0, 187); " href="https://www.linkedin.com/in/edes-l%C3%A1zaro-1b10401a0/">Edes Lázaro</a></h5>
+
+              <h5>GitHub:   <a style="color: rgb(72, 0, 187); " href="https://github.com/edes-lazaro">Edes Lázaro</a></h5>
+            </div>
+          </div>
+
+
+        <footer id="rodape">     
+              &copy; Copyright 2020
+        </footer>
+
+      </div>
+
+
+        <div id="acesso_usuario">
+          <form id="login">
+              <input style="border-radius: 10px;" type="text" placeholder="Insira seu apelido" name="apelido" id="apelido"  />
+              <input type="submit" value="Entrar"  />
+            </form>
+        </div>
+
+        <div id="sala_chat">
+          <h2 style="color: white; text-align: center;">Chat Online</h2>
+                <div id="historico_mensagens"></div>
+                
+                <!-- <select multiple="multiple" id='lista_usuarios'>
+                    <option value=' '>Todos</option>
+                </select> -->
+                
+                <form id="chat">
+                  <input style="border-radius: 10px;" type='text' id='mensagem' name='Mensagem' />
+                  <input style="float: right;" type='submit' value='Enviar' /> 
+              </form>
+        
+        </div>
+   
+      
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script src="chat.js"></script>
+
+
+      <script type="text/javascript">
+        var socket = io.connect();
+
+
+
+        $("form#chat").submit(function(e){
+          e.preventDefault();
+
+          var mensagem = $(this).find("#mensagem").val();
+          var usuario = $("#lista_usuarios").val();
+
+          socket.emit("enviar mensagem", {msg: mensagem, usu: usuario}, function(){
+                $("form#chat #mensagem").val("");
+          });
+        });
+
+                  
+          socket.on("atualizar mensagens", function(dados){
+            var mensagem_formatada = $("<p />").text(dados.msg).addClass(dados.tipo);
+
+            $("#historico_mensagens").append(mensagem_formatada);
+          });
+
+
+        $("form#login").submit(function(e){
+          e.preventDefault();
+
+          socket.emit("entrar", $(this).find("#apelido").val(), function(valido){
+            if(valido){
+              $("#acesso_usuario").hide();
+              $("#sala_chat").show();
+            }
+            else{
+              $("#acesso_usuario").val("");
+              alert("Este nome já é utilizado");
+            }
+          });
+        });
+
+
+
+          socket.on("atualizar usuarios", function(usuarios){
+            $("#lista_usuarios").empty();
+            $("#lista_usuarios").append("<option value= ' '> Todos</option>");
+            
+            $.each(usuarios, function(indice){
+              var opcao_usuario = $("<option/>").text(usuarios[indice]);
+              $("#lista_usuarios").append(opcao_usuario);
+            });
+          });
+
+    </script>
+      
+</body>
+</html>

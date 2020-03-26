@@ -1,0 +1,125 @@
+
+body{
+  background-image: url(../img/fundo.jpg);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  
+}
+
+#escopo{
+  background-image: linear-gradient(109deg, rgb(0, 0, 0) 30%, rgb(17, 16, 16) 70%);
+  opacity: 0.9;
+  color: white;
+  margin-left: 20%;
+  margin-right: auto;
+  width: 940px;
+  padding-top: 1.5cm;
+}
+
+#menu{
+  background-image: linear-gradient(109deg, rgb(152, 50, 246) 30%, rgb(3, 106, 224) 70%);
+  text-align: center;
+  font-size: 28px; 
+  font-family:Courier New;
+  font-weight: bold;
+  padding-top: 0.5cm;
+  padding-bottom: 0.5cm;
+}
+
+#intro{
+  color: rgb(98, 0, 255);
+  padding-left: 80px;
+  padding-top: 120px;
+  padding-bottom: 1.5cm;
+}
+
+#circulo {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1.5cm;
+	float: right;
+	transition: 0.3s ease;
+}
+
+.box-div{
+  padding-top: 3.5cm;
+  padding-bottom: 1.5cm;
+  text-justify: auto;
+}
+
+#contato{
+  padding-top: 3.0cm;
+  padding-bottom: 3.0cm;
+  text-justify: auto;
+}
+
+#redes_sociais{
+  padding: 20px;
+  margin: 1.5cm;
+  margin-top: 0.5cm;
+  font-size: 30px;
+  text-align: center;
+  padding-left: 0.5cm;
+  background-color:rgb(255, 255, 255);
+  border-radius: 5px;
+  color: rgb(72, 0, 187);
+}
+
+#rodape{
+  padding: 42%;
+  float: center;
+  background-image: linear-gradient(109deg, rgb(152, 50, 246) 30%, rgb(3, 106, 224) 70%);
+  padding-top: 0.2cm;
+  padding-bottom: 0.2cm;
+}
+
+.box{
+  padding: 20px;
+  margin: 1.5cm;
+  margin-top: 0.5cm;
+  color:rgb(72, 0, 187);
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+p{
+  padding: 0 45px;
+  text-indent: 15px;
+}
+
+a{
+  color: rgb(255, 255, 255);  
+}
+
+button{
+  position: absolute;
+  left: 45%;
+  transform: translate(-50%,-50%);
+  padding: 16px 32px;
+  background-image: linear-gradient(109deg, rgb(152, 50, 246) 30%, rgb(3, 106, 224) 70%);
+  color: white;
+  font-size: 28px; 
+  font-family:Courier New;
+  border: none;
+  overflow: hidden; cursor: pointer;
+}
+
+button::before{
+  position: absolute;
+  content: "";
+  top: 0; left: -110%;
+  bottom: 0;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: skewX(-30deg);
+  transition: left 0.7s ease-in-out;
+}
+
+button:hover::before{
+  left: 120%;
+}
